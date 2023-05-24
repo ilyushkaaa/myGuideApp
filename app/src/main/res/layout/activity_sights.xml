@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_element"
+    android:background="@drawable/bgkurskkkkk">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/helloText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="50dp"
+            android:fontFamily="@font/merriweather"
+            android:text="@string/welcome"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="#292726"
+            android:textSize="30sp" />
+           <androidx.cardview.widget.CardView
+                android:layout_marginStart="-50dp"
+               android:onClick="onMenuClick"
+               android:background="#000000"
+                android:id="@+id/buttonmenu"
+                android:layout_width="50dp"
+               app:cardCornerRadius="100dp"
+                android:layout_height="50dp"
+               android:clickable="true"
+                >
+               <ImageView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+
+                   android:src="@drawable/menu" />
+
+           </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/merriweather"
+            android:text="@string/chooseSight"
+            android:textAlignment="center"
+            android:textColor="#292726"
+            android:textSize="22sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            >
+
+            <ListView
+                android:id="@+id/sightsList"
+                android:background="@drawable/buttonborders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                >
+
+
+            </ListView>
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</RelativeLayout>

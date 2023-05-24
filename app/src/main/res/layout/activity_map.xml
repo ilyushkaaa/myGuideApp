@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.6"
+            android:orientation="vertical"
+            android:background="#faf2cc"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ПОКАЗАТЬ ДОСТОПРИМЕЧАТЕЛЬНСТИ В РАДИУСЕ"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+
+                >
+
+            </TextView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+            <EditText
+                android:id="@+id/setKilometres"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:inputType="text"
+                android:text=""
+                android:textColor="@color/black"
+                android:textColorHint="#4a4745"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                >
+
+            </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="КИЛОМЕТРОВ ОТ МЕНЯ"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+
+                >
+
+            </TextView>
+            <Button
+                android:id="@+id/buttonOK"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:textSize="15sp"
+                android:text="OK"
+                android:layout_marginStart="100dp"
+                android:background="@drawable/backbutton"
+                android:onClick="onOkClick"
+
+                >
+
+            </Button>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <com.yandex.mapkit.mapview.MapView
+            android:id="@+id/mapview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            >
+
+
+            <androidx.cardview.widget.CardView
+                android:background="#000000"
+                android:id="@+id/hideshow"
+                android:layout_width="60dp"
+                app:cardCornerRadius="50dp"
+                android:layout_height="60dp"
+               android:layout_alignParentEnd="true"
+                android:clickable="true"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:src="@drawable/fullscreenmap" />
+
+            </androidx.cardview.widget.CardView>
+
+        </com.yandex.mapkit.mapview.MapView>
+
+
+
+        <ScrollView
+
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="5">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#faf2cc"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#050200"/>
+
+            <TextView
+                android:id="@+id/workHours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#333232"/>
+
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#333232"/>
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+            </ImageView>
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+            </ImageView>
+
+
+
+            <Button
+                android:onClick="onBackClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Назад"
+                android:background="@drawable/backbutton"
+                android:layout_marginStart="300dp"/>
+
+
+
+
+        </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_element"
+    tools:context=".MainActivity"
+    android:background="@drawable/bgkur">
+
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:gravity="center"
+    android:layout_marginTop="25dp"
+    android:orientation="vertical"
+    tools:ignore="UselessParent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/merriweather"
+        android:text="Добро пожаловать в путеводитель по городу Курск!"
+        android:textAlignment="center"
+        android:textColor="#080301"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+
+        android:layout_marginTop="130dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/merriweather"
+                android:text="Введите информацию о себе"
+                android:textColor="#040303"
+                android:textSize="20sp">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/surname_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/merriweather"
+                android:textStyle="bold"
+
+                android:hint="Фамилия"
+                android:inputType="text"
+                android:text=""
+                android:textColor="@color/black"
+                android:textColorHint="#4a4745"
+                android:textSize="20sp" />
+
+            <EditText
+                android:textStyle="bold"
+                android:id="@+id/name_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/merriweather"
+                android:hint="Имя"
+                android:inputType="text"
+                android:text=""
+                android:textColor="@color/black"
+                android:textColorHint="#4a4745"
+                android:textSize="20sp" />
+
+            <EditText
+                android:textStyle="bold"
+                android:id="@+id/email_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/merriweather"
+                android:hint="Эл. почта"
+                android:inputType="textEmailAddress"
+                android:text=""
+                android:textColor="@color/black"
+                android:textColorHint="#4a4745"
+                android:textSize="20sp" />
+
+            <Button
+                android:textStyle="bold"
+                android:id="@+id/buttonGoOn"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="190dp"
+                android:background="#f7947e"
+                android:fontFamily="@font/merriweather"
+
+                android:onClick="onGoOnClick"
+                android:text="Далее"
+                android:textColor="@color/black" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

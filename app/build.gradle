@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.application'
+}
+
+
+android {
+    namespace 'com.example.myguideapp'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.myguideapp"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main  {
+            res.srcDirs = [
+                    'src/main/res/drawable/drawable1',
+                    'src/main/res/drawable',
+                    'src/main/res'
+            ]
+            assets {
+                srcDirs 'src\\main\\assets', 'src\\main\\res\\assets1', 'src\\main\\res\\assets2', 'src\\main\\res\\assets3', 'src\\main\\res\\assets4', 'src\\main\\res\\assets5', 'src\\main\\res\\assets6', 'src\\main\\res\\assets7', 'src\\main\\res\\assets8', 'src\\main\\res\\assets9', 'src\\main\\res\\assets10', 'src\\main\\res\\assets11', 'src\\main\\res\\assets12', 'src\\main\\res\\assets13', 'src\\main\\res\\assets14', 'src\\main\\res\\assets15'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.yandex.android:maps.mobile:4.3.1-lite'
+
+
+    //implementation 'com.yandex.android:mapkit:3.0.0'
+
+
+
+
+
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

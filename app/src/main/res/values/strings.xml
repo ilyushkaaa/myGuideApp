@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyGuideApp</string>
+    <string name="chooseSight">Выберите достопримечательность</string>
+    <string name="welcome">Приветствуем Вас, </string>
+</resources>

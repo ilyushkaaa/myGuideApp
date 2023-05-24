@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_element"
+    android:background="@drawable/bggkrsk">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/merriweather"
+            android:text="Избранное"
+            android:textAlignment="center"
+            android:textColor="#292726"
+            android:textSize="22sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardFav"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            >
+
+
+          <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerFav"
+              android:orientation="vertical"
+              android:background="@drawable/buttonborders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               >
+          </androidx.recyclerview.widget.RecyclerView>
+        </androidx.cardview.widget.CardView>
+        <Button
+            android:id="@+id/mainbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="На главную"
+            android:layout_gravity="bottom|center"
+            android:onClick="onMainClick">
+
+        </Button>
+
+    </LinearLayout>
+</RelativeLayout>
+

@@ -102,7 +102,7 @@ public class MapActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //myLocation = new Location();
+
 
         super.onCreate(savedInstanceState);
         if (count == 0){

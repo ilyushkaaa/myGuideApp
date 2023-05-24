@@ -57,8 +57,6 @@ import java.util.regex.Pattern;
 // (Сделано)добавить фоточки под текст ,
 //  (невозможно сделать)попытаться в дравабле создать папку с картинками
 // можно сделать парселабле
-// вывести достопримечательности в радиусе
-// местоположение
 
 
 
@@ -102,8 +100,6 @@ public class MapActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         if (count == 0){
             MapKitFactory.setApiKey(MAPKIT_API_KEY);

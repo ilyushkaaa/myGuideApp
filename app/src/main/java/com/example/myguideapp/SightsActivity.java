@@ -1,5 +1,6 @@
 package com.example.myguideapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +26,8 @@ public class SightsActivity extends AppCompatActivity {
     private ListView lsSights;
     private Sight[] allSights;
     private User user;
-    List<Sight> favourSights;
+    private String pathFile = "guideeee.bin";
+
 
 
     private void createSights(){
@@ -140,10 +145,14 @@ public class SightsActivity extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        favourSights = new ArrayList<>();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sights);
         Intent intent = getIntent();
+
+        createSights();
+        user = (User)intent.getSerializableExtra("user");
+        showSights();
         androidx.cardview.widget.CardView card = findViewById(R.id.card2);
         GradientDrawable border = new GradientDrawable();
 
@@ -151,19 +160,9 @@ public class SightsActivity extends AppCompatActivity {
         border.setCornerRadius(20);
         card.setBackground(border);
 
-        user = (User)intent.getSerializableExtra("user");
 
         TextView textHello = findViewById(R.id.helloText);
         textHello.setText(textHello.getText() + " " + user.getName() + " " + user.getSurname());
-        createSights();
-        showSights();
-
-
-
-
-
-
-        // устанавливаем фон
 
     }
     public void onMenuClick(View v){
@@ -174,7 +173,7 @@ public class SightsActivity extends AppCompatActivity {
             menu.show();
             menu.setOnMenuItemClickListener(menuItem -> {
                 if (menuItem.getItemId() == R.id.menu_item1) {
-                    Sight[] arr = favourSights.toArray(new Sight[0]);
+                    Sight[] arr = user.getFavourSights().toArray(new Sight[0]);
                     Intent intent1 = new Intent(SightsActivity.this,
                             FavourActivity.class);
                     intent1.putExtra("user", user);
@@ -196,25 +195,40 @@ public class SightsActivity extends AppCompatActivity {
         });
     }
     private void showSights(){
-        String[] sightNames = new String[allSights.length];
+        List<String> sightNames = new ArrayList<>();
         for (int i = 0; i < allSights.length; ++i){
-            sightNames[i] = allSights[i].getName();
+            sightNames.add(allSights[i].getName());
+        }
+        List<String> favSightNames = new ArrayList<>();
+        for (int j = 0; j < user.getFavourSights().size(); ++j){
+            favSightNames.add(user.getFavourSights().get(j).getName());
         }
         lsSights = findViewById(R.id.sightsList);
-        ArrayAdapter<String> arrayAdapter= new ArrayAdapter<String>(this,
-                R.layout.list_sights, R.id.buttonSight,
-                sightNames);
+        ListAdapter arrayAdapter= new ListAdapter(this,
+                R.layout.list_sights, sightNames, favSightNames);
         lsSights.setAdapter(arrayAdapter);
 
     }
     public void onCheckClick(View view){
         int pos = lsSights.getPositionForView(view);
-        if (favourSights.contains(allSights[pos])){
-            favourSights.remove(allSights[pos]);
+        if (user.getFavourSights().contains(allSights[pos])){
+            user.getFavourSights().remove(allSights[pos]);
         }
         else {
-            favourSights.add(allSights[pos]);
+            user.addSight(allSights[pos]);
+            SessionInfo.getAllUsers().remove(findUser());
+            SessionInfo.addUser(user);
         }
+    }
+    public int findUser(){
+        for (int i = 0; i < SessionInfo.getAllUsers().size(); ++i){
+            if(SessionInfo.getAllUsers().get(i).getName().equals(user.getName())
+            && SessionInfo.getAllUsers().get(i).getSurname().equals(user.getSurname())
+            && SessionInfo.getAllUsers().get(i).getEmail().equals(user.getEmail())){
+                return i;
+            }
+        }
+        return -1;
     }
     public void onSightClick(View view){
         int pos = lsSights.getPositionForView(view);
@@ -226,6 +240,62 @@ public class SightsActivity extends AppCompatActivity {
         startActivity(intent);
         //finish();
     }
+    private void saveInfo() throws IOException {
+        FileOutputStream fos = openFileOutput(pathFile, Context.MODE_PRIVATE);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeInt(SessionInfo.getAllUsers().size());
+        for (User us: SessionInfo.getAllUsers()){
+            oos.writeObject(us);
+        }
+        oos.close();
+        fos.close();
+    }
+    @Override
+    protected void onPause() {
+        try {
+            saveInfo();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.onPause();
+    }
+    @Override
+    protected void onStop() {
+        try {
+            saveInfo();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.onStop();
+    }
+    @Override
+    protected void onDestroy() {
+        try {
+            saveInfo();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        super.onDestroy();
+    }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        try {
+            saveInfo();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        try {
+            saveInfo();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
 }
